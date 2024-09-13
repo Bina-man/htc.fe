@@ -1,0 +1,373 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Example</title>
+    
+</head>
+<body style="background-color: aquamarine;">
+   <h1 style="color: brown;"> Booking Online</h1> 
+   <form id="main-contact-form" name="contact-form" method="post" action="#">
+        <label for="fname">First Name:</label>
+        <input type="text" id="fname" name="firstname" placeholder="First Name"><br><br>
+        <label for="lname">Last Name:</label>
+        <input type="text" id="lname" name="lastname" placeholder="Last Name" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="tel">Phone Number:</label>
+        <input type="int" id="tel" name="telephone number" required><br><br>
+
+        <label for="adr">From:</label>
+        <input type="text" id="fromadress" name="start from" placeholder="Starting place/ address"><br><br>
+        <label for="adr">To:</label>
+        <input type="text" id="toadress" name="end To" placeholder="Last distination/address" required><br><br>
+        <label for="list">Airline/Airways:</label>        <select id="list" name="list" required>
+                
+                <option value="select">select Airlines</option>
+                <option value="Air New Zealand">Air NeW Zealand </option>
+                <option value="AeroMexico"> AeroMexico </option>
+                <option value="Air canada " >Air Canada</option>
+                <option value="Air France">Air France </option>
+                <option value="Alaska Airlines">Alaska Airlines</option> </option>
+                <option value="American Airlines">American Airlines</option>
+                <option value="British Airways">British Airways</option>
+                <option value="Delta Air Lines">Delta Airlines </option>
+                <option value="Emirates">Emirates </option>
+                <option value="Frontir Airlines">Frontier Airlines</option>
+                <option value="JetBlue">JetBlue Airways</option>
+                <option value="KLM">KLM</option>
+                <option value="Lufthansa">Lufthansa </option>
+                <option value="Qatar Airways">Mesa Airlines</option>
+                <option value="Qatar Airways">Qatar Airways</option>
+                <option value="Singapore Airlines">Singspore Airlines </option>
+                <option value="Sky west Airlines">Sky West Airlines</option>
+                <option value="south west airway">Southwest Airways</option>
+                
+                <option value="Qatar Airways">spirit Airlines</option>
+                <option value="Turkish Airlines">Turkish Airlines</option>
+                <option value="TACA">TACA </option>
+                <option value="United Airlines">United Airlines</option>
+                <option value="U.S Airlines ">U.S Airlines </option>
+                <option value="VIvaAerobus">VivaArobus</option>
+                
+
+            
+        </select><br><br>
+        <label for="flight">Filght Number:</label>
+        <input type="text" id="filght" name="flight number" placeholder="Flight number"  required><br><br>
+
+       
+        
+
+        <label>Choose your Trip:</label><br>
+            <input type="radio" id="radio1" name="radio" value="Option 1" required>
+            <label for="radio1">Round Trip</label><br>
+            <input type="radio" id="radio2" name="radio" value="Option 2">
+            <label for="radio2">One way Trip</label><br><br>
+
+        <label for="appt-time" >choose pick up time</label>
+          <input id="appt-time" type="time" name="appt-time" step="s"><br><br>
+
+       <label for="appt-date" >chooes pick up date</label>
+         <input type="date"><br><br>
+
+
+        <label for="message">Message:conforming date and time by writting too ? </label><br>
+        <textarea id="message" name="message" rows="4" cols="50" placeholder="--:-- Am/Pm and /--/--202-" required></textarea><br><br>
+
+        <input type="submit" value="Send">
+    </form>
+
+
+    <script>
+        document.getElementById('main-contact-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+           
+            
+            const fname = document.getElementById('fname').value;
+            const lname = document.getElementById('lname').value;
+            name = fname + lname
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('tel').value;
+            const fromadress = document.getElementById('fromadress').value;
+            const toadress = document.getElementById('toadress').value;
+            const airlines = document.getElementById('list').nodeValue;
+            const flight = document.getElementById('flight').value;
+            const location_! = document.getElementById('flight').value;
+
+
+            const subject = "Urgent taxi request"
+            const message = "Taxi request"
+            
+
+            console.log(name);
+            console.log(email);
+            console.log(subject);
+            console.log(message);
+
+            const response = await fetch('https://htc-d2ll.onrender.com/send_email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email:email,
+                    body: `Name: ${name} \nEmail: ${email} \nSubject: ${subject}\nMessage: ${message}`
+                }),
+            });
+    
+            if (response.ok) {
+                alert('Email sent successfully!');
+            } else {
+                alert('Failed to send email.');
+            }
+        });
+    </script>
+
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Example</title>
+    <style>
+        body {
+            background-color: aquamarine;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: brown;
+            text-align: center;
+        }
+        form {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="time"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .trip-toggle {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        .toggle-label {
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+        }
+        .toggle-input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 30px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        .toggle-input:checked + .slider {
+            background-color: brown;
+        }
+        .toggle-input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+        input[type="submit"] {
+            background-color: brown;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: darkred;
+        }
+        @media (max-width: 600px) {
+            form {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Booking Online</h1> 
+    <form id="main-contact-form" name="contact-form" method="post" action="#">
+        <label for="fname">First Name:</label>
+        <input type="text" id="fname" name="firstname" placeholder="First Name" required>
+
+        <label for="lname">Last Name:</label>
+        <input type="text" id="lname" name="lastname" placeholder="Last Name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="tel">Phone Number:</label>
+        <input type="tel" id="tel" name="telephone" placeholder="Phone Number" required>
+
+        <label for="fromadress">From:</label>
+        <input type="text" id="fromadress" name="start-from" placeholder="Starting place/address">
+
+        <label for="toadress">To:</label>
+        <input type="text" id="toadress" name="end-to" placeholder="Last destination/address" required>
+
+        <label for="list">Airline/Airways:</label>
+        <select id="list" name="list" required>
+            <option value="select">select Airlines</option>
+            <option value="Air New Zealand">Air NeW Zealand </option>
+            <option value="AeroMexico"> AeroMexico </option>
+            <option value="Air canada " >Air Canada</option>
+            <option value="Air France">Air France </option>
+            <option value="Alaska Airlines">Alaska Airlines</option> </option>
+            <option value="American Airlines">American Airlines</option>
+            <option value="British Airways">British Airways</option>
+            <option value="Delta Air Lines">Delta Airlines </option>
+            <option value="Emirates">Emirates </option>
+            <option value="Frontir Airlines">Frontier Airlines</option>
+            <option value="JetBlue">JetBlue Airways</option>
+            <option value="KLM">KLM</option>
+            <option value="Lufthansa">Lufthansa </option>
+            <option value="Qatar Airways">Mesa Airlines</option>
+            <option value="Qatar Airways">Qatar Airways</option>
+            <option value="Singapore Airlines">Singspore Airlines </option>
+            <option value="Sky west Airlines">Sky West Airlines</option>
+            <option value="south west airway">Southwest Airways</option>
+            
+            <option value="Qatar Airways">spirit Airlines</option>
+            <option value="Turkish Airlines">Turkish Airlines</option>
+            <option value="TACA">TACA </option>
+            <option value="United Airlines">United Airlines</option>
+            <option value="U.S Airlines ">U.S Airlines </option>
+            <option value="VIvaAerobus">VivaArobus</option>
+        </select>
+
+        <label>Choose your Trip:</label>
+        <div class="trip-toggle">
+            <label class="toggle-label" for="trip-toggle">Round Trip</label>
+            <div class="toggle-switch">
+                <input type="checkbox" class="toggle-input" id="trip-toggle" name="trip" value="Round Trip">
+                <span class="slider"></span>
+            </div>
+            <label class="toggle-label" for="trip-toggle">One Way Trip</label>
+        </div>
+
+        <label for="flight">Flight Number:</label>
+        <input type="text" id="flight" name="flight-number" placeholder="Flight number" required>
+
+        <label for="appt-time">Choose Pick-up Time:</label>
+        <input id="appt-time" type="time" name="appt-time" required>
+
+        <label for="appt-date">Choose Pick-up Date:</label>
+        <input type="date" id="appt-date" name="appt-date" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" placeholder="Conforming date and time..." required></textarea>
+
+        <input type="submit" value="Send">
+    </form>
+
+    <script>
+        document.getElementById('main-contact-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+        
+            // Collecting form data
+            const fname = document.getElementById('fname').value;
+            const lname = document.getElementById('lname').value;
+            const name = `${fname} ${lname}`;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('tel').value;
+            const fromadress = document.getElementById('fromadress').value;
+            const toadress = document.getElementById('toadress').value;
+            const airlines = document.getElementById('list').value;
+            const flight = document.getElementById('flight').value;
+            
+            // Determine trip type based on toggle switch
+            const tripType = document.getElementById('trip-toggle').checked ? "Round Trip" : "One Way Trip";
+            
+            // Prepare email details
+            const subject = "Urgent taxi request";
+            const message = "Taxi request";
+        
+            // Log the collected data for debugging
+            console.log(name, email, subject, message, tripType);
+        
+            // Send the collected data to the server
+            const response = await fetch('https://htc-d2ll.onrender.com/send_email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    from: fromadress,
+                    to: toadress,
+                    airlines: airlines,
+                    flight: flight,
+                    tripType: tripType,
+                    body: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nFrom: ${fromadress}\nTo: ${toadress}\nAirlines: ${airlines}\nFlight: ${flight}\nTrip Type: ${tripType}\nMessage: ${message}`
+                }),
+            });
+        
+            // Handle the response from the server
+            if (response.ok) {
+                alert('Email sent successfully!');
+            } else {
+                alert('Failed to send email.');
+            }
+        });
+    </script>
+</body>
+</html>
